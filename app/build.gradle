@@ -1,7 +1,10 @@
 apply plugin: 'com.android.application'
 
-// 使用自定义的 plugin  tryCatch
-apply plugin: com.example.autotrycatchlibrary.PathPlugin
+// 使用可以上传到maven的插件，当前是在本地
+apply plugin: 'path-plugin'
+
+// 使用 buildsrc 的插件
+//apply plugin: com.example.autotrycatchlibrary.PathPlugin
 
 android {
     compileSdkVersion 29
