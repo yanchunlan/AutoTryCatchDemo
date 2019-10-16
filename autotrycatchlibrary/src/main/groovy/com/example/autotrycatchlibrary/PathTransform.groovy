@@ -89,7 +89,8 @@ class PathTransform extends Transform {
              *  等
              *  根据自己的需要对应处理
              */
-            println("it == ${it}")
+            System.out.println("it == ${it.file.absolutePath}")
+
 
             //注入代码buildSrc\src\main\groovy\demo
             TryCatchInject.injectDir(it.file.absolutePath, packageName)

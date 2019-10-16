@@ -70,8 +70,9 @@ class TryCatchInject {
     }
 
     private static void injectCode(String className) {
+        System.out.println("className:" + className)
         CtClass c = pool.getCtClass(className)
-        //  println("CtClass:" + c)
+        System.out.println("CtClass:" + c)
         defrostClassIfFrozen(c)
         traverseMethod(c)
 
@@ -82,7 +83,7 @@ class TryCatchInject {
     private static void traverseMethod(CtClass c) {
         CtMethod[] methods = c.getDeclaredMethods()
         for (ctMethod in methods) {
-            // println("ctMethod:" + ctMethod)
+            // System.out.println("ctMethod:" + ctMethod)
             traverseAnnotation(ctMethod)
         }
     }
