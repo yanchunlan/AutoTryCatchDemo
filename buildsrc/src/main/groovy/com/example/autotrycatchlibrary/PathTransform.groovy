@@ -95,7 +95,7 @@ class PathTransform extends Transform {
              *  等
              *  根据自己的需要对应处理
              */
-            System.out.println("it == ${it.file.absolutePath}")
+            System.out.println("traversalDirInputs copy absolutePath " + it.file.absolutePath)
 
             //注入代码buildSrc\src\main\groovy\demo
             TryCatchInject.injectDir(it.file.absolutePath, packageName)
@@ -103,6 +103,7 @@ class PathTransform extends Transform {
             // 获取output目录
             def dest = outputProvider.getContentLocation(it.name
                     , it.contentTypes, it.scopes, Format.DIRECTORY)
+//            System.out.println("traversalDirInputs dest absolutePath " + dest)
 
             // 将input的目录复制到output指定目录
             FileUtils.copyDirectory(it.file, dest)
@@ -118,6 +119,8 @@ class PathTransform extends Transform {
                 //jar文件一般是第三方依赖库jar文件
                 // 重命名输出文件（同目录copyFile会冲突）
                 def jarName = jarInput.name
+//                System.out.println("traversalJarInputs copy jarName " + jarName)
+
 //                System.out.println("jarName == ${jarName}")
                 def md5Name = DigestUtils.md5Hex(jarInput.file.getAbsolutePath())
                 if (jarName.endsWith(".jar")) {
@@ -126,6 +129,8 @@ class PathTransform extends Transform {
                 //生成输出路径
                 def dest = outputProvider.getContentLocation(jarName + md5Name,
                         jarInput.contentTypes, jarInput.scopes, Format.JAR)
+//                System.out.println("traversalJarInputs dest jarName " + dest)
+
                 //将输入内容复制到输出
                 FileUtils.copyFile(jarInput.file, dest)
         }
